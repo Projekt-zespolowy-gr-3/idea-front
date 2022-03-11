@@ -35,5 +35,11 @@
     "return": "Return",
     "save": "Save",
     "user.details": "Show your profile",
-    "name.surname": "Name and surname"
+    "name.surname": "Name and surname",
+    "add.furniture": "Add new furniture",
+    "furniture.name": "Name",
+    "description": "Description",
+    "category": "Category",
+    "amount": "Amount",
+    "price": "Price"
 }

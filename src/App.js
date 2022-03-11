@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import NavigationBar from './components/NavigationBar';
-import Home from './components/Home';
 import { RestrictedRoute } from './utils/RestrictedRoute';
 import { PrivateRoute } from './utils/PrivateRoute';
 import Login from './components/Login';
@@ -15,6 +14,8 @@ import Register from './components/Register';
 import Confirm from './components/Confirm';
 import ListUsers from './components/ListUsers';
 import UserDetails from './components/UserDetails';
+import AddFurniture from './components/AddFurniture';
+import ListFurnitures from './components/ListFurnitures';
 
 function App() {
   const classes = useStyles();
@@ -26,7 +27,7 @@ function App() {
           <NavigationBar />
           <div className={classes.root}>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={ListFurnitures} />
 
             <RestrictedRoute path="/login" component={Login} />
             <RestrictedRoute path="/register" component={Register} />
@@ -34,6 +35,7 @@ function App() {
 
             <PrivateRoute path="/users" component={ListUsers} roles={["ADMIN"]} />
             <PrivateRoute path="/user" component={UserDetails} roles={["CLIENT"]} />
+            <PrivateRoute path="/furniture" component={AddFurniture} roles={["ADMIN"]} />
 
             <Route path="/accessDenied" component={AccessDenied} />
             <Route component={PageNotFound} />

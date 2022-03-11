@@ -101,6 +101,44 @@ class FetchService {
         }
     }
 
+    createFurniture = async (name, description, category, price, photo, amount) => {
+        const response = await fetch(URL + "furnitures/furniture", {
+            method: "POST",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.json();
+            errorNotification(json, " ");
+        }
+    }
+
+    getFurniture = async (businessKey) => {
+        const response = await fetch(URL + "furnitures/" + businessKey, {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.json();
+            errorNotification(json, " ");
+        }
+    }
+
+    getFurnitures = async () => {
+        const response = await fetch(URL + "furnitures", {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.json();
+            errorNotification(json, " ");
+        }
+    }
 }
 
 export default new FetchService();

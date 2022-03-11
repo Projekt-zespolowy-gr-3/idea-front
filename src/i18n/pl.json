@@ -35,5 +35,11 @@
     "return": "Wróć",
     "save": "Zapisz",
     "user.details": "Zobacz profil",
-    "name.surname": "Imię i nazwisko"
+    "name.surname": "Imię i nazwisko",
+    "add.furniture": "Dodaj nowy mebel",
+    "furniture.name": "Nazwa",
+    "description": "Opis",
+    "category": "Kategoria",
+    "amount": "Ilość",
+    "price": "Cena"
 }

@@ -22,6 +22,9 @@ export default function NavigationBar() {
                     <Typography className={classes.navigationRoleLabel} component={Link} to="/users">
                         {t('list.users')}
                     </Typography>
+                    <Typography className={classes.navigationRoleLabel} component={Link} to="/furniture">
+                        {t('add.furniture')}
+                    </Typography>
                 </div>
                 : null}
 
