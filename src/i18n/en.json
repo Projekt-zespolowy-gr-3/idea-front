@@ -41,5 +41,6 @@
     "description": "Description",
     "category": "Category",
     "amount": "Amount",
-    "price": "Price"
+    "price": "Price",
+    "success": "Action completed successfully"
 }

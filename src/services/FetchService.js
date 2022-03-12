@@ -19,7 +19,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -39,10 +39,11 @@ class FetchService {
                 "active": false
             })
         });
+        console.log(response)
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -57,7 +58,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -70,7 +71,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -83,7 +84,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -96,7 +97,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -104,12 +105,20 @@ class FetchService {
     createFurniture = async (name, description, category, price, photo, amount) => {
         const response = await fetch(URL + "furnitures/furniture", {
             method: "POST",
-            headers: getHeader()
+            headers: getHeader(),
+            body: JSON.stringify({
+                "name": name,
+                "description": description,
+                "category": category,
+                "price": price,
+                "photo": photo,
+                "amount": amount
+            })
         });
         if(response.ok) {
-            return await response.json();
+            return response;
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -122,7 +131,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
@@ -135,7 +144,7 @@ class FetchService {
         if(response.ok) {
             return await response.json();
         } else {
-            let json = await response.json();
+            let json = await response.text();
             errorNotification(json, " ");
         }
     }
