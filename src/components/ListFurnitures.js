@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
 import FetchService from '../services/FetchService';
-import { Paper, Table, TableHead, TableRow, TableCell, TableBody} from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+import { DataGrid } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
+import { fontSize } from '@mui/system';
 
 
 export default function ListFurnitures() {
@@ -13,6 +15,16 @@ export default function ListFurnitures() {
     const { t } = useTranslation();
     const [list, setList] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+
+    const columns = [
+        // { field: "businessKey", hide: true },
+        { field: 'name', headerName: t('furniture.name'), flex: 1},
+        { field: 'category', headerName: t('category'), flex: 1},
+        { field: 'description', headerName: t('description'), flex: 1},
+        { field: 'amount', headerName: t('amount'), flex: 1},
+        { field: 'price', headerName: t('price'), flex: 1}
+    ];
+
 
     useEffect(() => {
         if (localStorage.getItem("logged") !== null) {
@@ -48,32 +60,21 @@ export default function ListFurnitures() {
         )
     } else {
         return (
-            <Paper className={classes.table}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>{t('furniture.name')}</TableCell>
-                            <TableCell align="right">{t('category')}</TableCell>
-                            <TableCell align="right">{t('description')}</TableCell>
-                            <TableCell align="right">{t('amount')}</TableCell>
-                            <TableCell align="right">{t('price')}</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {list.map((row) => (
-                            <TableRow key={row.businessKey}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.category}</TableCell>
-                                <TableCell align="right">{row.description}</TableCell>
-                                <TableCell align="right">{row.amount}</TableCell>
-                                <TableCell align="right">{row.price}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
+            <div style={{ height: 400, width: '100%' }}>
+                <Paper style={{fontSize: '32px'}}>
+                    {t('furniture.list')}
+                </Paper>
+                <div style={{ display: 'flex', height: '100%' }}>
+                    <div style={{ flexGrow: 1 }}>
+                        <DataGrid
+                            getRowId={(row) => row.businessKey}
+                            rows={list}
+                            columns={columns}
+                            pageSize={5}
+                        />
+                    </div>
+                </div>
+            </div>
         )
     }
 }

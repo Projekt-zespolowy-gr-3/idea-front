@@ -41,5 +41,6 @@
     "description": "Opis",
     "category": "Kategoria",
     "amount": "Ilość",
-    "price": "Cena"
+    "price": "Cena",
+    "furniture.list": "Lista mebli"
 }
