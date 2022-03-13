@@ -15,14 +15,15 @@ export default function ListFurnitures() {
     const { t } = useTranslation();
     const [list, setList] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
+    const [pageSize, setPageSize] = React.useState(5);
 
     const columns = [
         // { field: "businessKey", hide: true },
-        { field: 'name', headerName: t('furniture.name'), flex: 1},
-        { field: 'category', headerName: t('category'), flex: 1},
-        { field: 'description', headerName: t('description'), flex: 1},
-        { field: 'amount', headerName: t('amount'), flex: 1},
-        { field: 'price', headerName: t('price'), flex: 1}
+        { field: 'name', headerName: t('furniture.name'), flex: 1 },
+        { field: 'category', headerName: t('category'), flex: 1 },
+        { field: 'description', headerName: t('description'), flex: 1 },
+        { field: 'amount', headerName: t('amount'), flex: 1 },
+        { field: 'price', headerName: t('price'), flex: 1 }
     ];
 
 
@@ -60,20 +61,19 @@ export default function ListFurnitures() {
         )
     } else {
         return (
-            <div style={{ height: 400, width: '100%' }}>
-                <Paper style={{fontSize: '32px'}}>
+            <div style={{ height: 650, width: '100%' }}>
+                <Paper style={{ fontSize: '32px' }}>
                     {t('furniture.list')}
                 </Paper>
-                <div style={{ display: 'flex', height: '100%' }}>
-                    <div style={{ flexGrow: 1 }}>
-                        <DataGrid
-                            getRowId={(row) => row.businessKey}
-                            rows={list}
-                            columns={columns}
-                            pageSize={5}
-                        />
-                    </div>
-                </div>
+                <DataGrid
+                    getRowId={(row) => row.businessKey}
+                    rows={list}
+                    columns={columns}
+                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                    pageSize={pageSize}
+                    rowsPerPageOptions={[5, 10, 20]}
+                    pagination
+                />
             </div>
         )
     }
