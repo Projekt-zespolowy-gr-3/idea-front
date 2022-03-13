@@ -42,5 +42,6 @@
     "category": "Kategoria",
     "amount": "Ilość",
     "price": "Cena",
-    "furniture.list": "Lista mebli"
+    "furniture.list": "Lista mebli",
+    "success": "Operacja przebiegła pomyślnie"
 }
