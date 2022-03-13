@@ -42,9 +42,6 @@
     "category": "Category",
     "amount": "Amount",
     "price": "Price",
-<<<<<<< HEAD
-    "furniture.list": "Furniture list"
-=======
+    "furniture.list": "Furniture list",
     "success": "Action completed successfully"
->>>>>>> 6a79c1578221869bb2cdcfb32625e931325e8db2
 }
