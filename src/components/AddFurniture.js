@@ -6,12 +6,13 @@ import FetchService from '../services/FetchService';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
+import ImageUploader from 'react-images-upload';
 
 export default function AddFurniture(props) {
 
     const { t } = useTranslation();
     const classes = useStyles();
-    const { control, formState, reset } = useForm({ mode: "onChange" });
+    const { control, formState } = useForm({ mode: "onChange" });
     const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
     const [category, setCategory] = React.useState("");
@@ -20,12 +21,22 @@ export default function AddFurniture(props) {
     const [photo, setPhoto] = React.useState("");
     const [loading, setLoading] = React.useState(false);
 
-    const addFurniture = (event) => {
+    const handleImageUpload = (event) => {
+        if (event.length > 0) {
+            let reader = new FileReader();
+            reader.readAsDataURL(event[0]);
+            reader.onloadend = () => {
+                setPhoto(reader.result);
+            }
+        }
+    }
+
+    const addFurniture = async (event) => {
         event.preventDefault();
         setLoading(true);
-        FetchService.createFurniture(name, description, category, price, photo, amount)
+        FetchService.createFurniture(name, description, category, price, photo.substring("data:image/png;base64,".length + 1), amount)
             .then(response => {
-                if(response) {
+                if (response) {
                     successNotification("success", " ");
                 }
             }).then(() => {
@@ -173,6 +184,12 @@ export default function AddFurniture(props) {
                         }
                     />
                     <br />
+                    <ImageUploader singleImage withPreview
+                        label={t('file.details')}
+                        buttonText={t('upload.file')}
+                        fileTypeError={t('wrong.file.extension')}
+                        fileSizeError={t('wrong.file.size')}
+                        onChange={(event) => handleImageUpload(event)} />
                     <div className={classes.loginButton}>
                         <Button type="submit" variant="contained" disabled={!formState.isValid}>
                             {t('confirm')}

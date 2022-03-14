@@ -6,7 +6,6 @@ import { DataGrid } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
-import { fontSize } from '@mui/system';
 
 
 export default function ListFurnitures() {
@@ -60,11 +59,23 @@ export default function ListFurnitures() {
             </div>
         )
     } else {
+
+        {/* TODO przykład */}
+        let image = "";
+        if(list[19]) {
+            image = "data:image/png;base64," + list[19].photo;
+        }
+
         return (
             <div style={{ height: 650, width: '100%' }}>
                 <Paper style={{ fontSize: '32px' }}>
                     {t('furniture.list')}
                 </Paper>
+
+                {/* TODO przykład */}
+                <img src={image} />
+
+
                 <DataGrid
                     getRowId={(row) => row.businessKey}
                     rows={list}

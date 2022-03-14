@@ -43,5 +43,10 @@
     "amount": "Ilość",
     "price": "Cena",
     "furniture.list": "Lista mebli",
-    "success": "Operacja przebiegła pomyślnie"
+    "success": "Operacja przebiegła pomyślnie",
+    "upload.file": "Wgraj zdjęcie",
+    "file.uploaded": "Pomyślnie wgrano zdjęcie",
+    "file.details": "Maksymalny rozmiar pliku: 5MB, akceptowane rozszerzenia: jpg|png",
+    "wrong.file.extension": "Niepoprawne rozszerzenie pliku",
+    "wrong.file.size": "Zbyt duży rozmiar pliku"
 }

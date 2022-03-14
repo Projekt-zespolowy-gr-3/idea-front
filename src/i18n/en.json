@@ -43,5 +43,9 @@
     "amount": "Amount",
     "price": "Price",
     "furniture.list": "Furniture list",
-    "success": "Action completed successfully"
+    "success": "Action completed successfully",
+    "upload.file": "Upload an image",
+    "file.details": "Max file size: 5MB, accepted extensions: jpg|png",
+    "wrong.file.extension": "Wrong file extension",
+    "wrong.file.size": "File is too large"
 }
