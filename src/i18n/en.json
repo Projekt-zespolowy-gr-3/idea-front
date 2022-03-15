@@ -47,5 +47,9 @@
     "upload.file": "Upload an image",
     "file.details": "Max file size: 5MB, accepted extensions: jpg|png",
     "wrong.file.extension": "Wrong file extension",
-    "wrong.file.size": "File is too large"
+    "wrong.file.size": "File is too large",
+    "category.bed": "Bed",
+    "category.sofa": "Sofa",
+    "category.table": "Table",
+    "category.chair": "Chair"
 }

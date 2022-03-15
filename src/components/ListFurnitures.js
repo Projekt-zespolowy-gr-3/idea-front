@@ -59,6 +59,7 @@ export default function ListFurnitures() {
         FetchService.getFurnitures(currentPage, pageSize)
             .then(response => {
                 if (response) {
+                    response.forEach(f => f.category = t(f.category));
                     setList(response);
                     console.log(response);
                 }

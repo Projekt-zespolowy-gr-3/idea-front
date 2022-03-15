@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
 import ImageUploader from 'react-images-upload';
+import Autocomplete from "@mui/material/Autocomplete";
 
 export default function AddFurniture(props) {
 
@@ -16,10 +17,21 @@ export default function AddFurniture(props) {
     const [name, setName] = React.useState("");
     const [description, setDescription] = React.useState("");
     const [category, setCategory] = React.useState("");
+    const [categories, setCategories] = React.useState([]);
     const [price, setPrice] = React.useState("");
     const [amount, setAmount] = React.useState("");
     const [photo, setPhoto] = React.useState("");
     const [loading, setLoading] = React.useState(false);
+
+    React.useEffect(() => {
+        FetchService.getCategories()
+            .then(response => {
+                if (response) {
+                    setCategories(response);
+                    console.log(response);
+                }
+            })
+    }, []);
 
     const handleImageUpload = (event) => {
         if (event.length > 0) {
@@ -103,28 +115,15 @@ export default function AddFurniture(props) {
                         }
                     />
                     <br />
-                    <Controller
-                        name={"category"}
-                        control={control}
-                        defaultValue=""
-                        rules={{
-                            required: { value: true, message: t('required') },
+                    <Autocomplete
+                        fullWidth
+                        value={category}
+                        onChange={(event, newCategory) => {
+                            setCategory(newCategory);
                         }}
-                        render={({ field: { onChange }, fieldState: { error } }) =>
-                            <TextField
-                                fullWidth
-                                margin="dense"
-                                label={t('category')}
-                                variant="filled"
-                                error={!!error}
-                                helperText={error ? error.message : null}
-                                value={category}
-                                onChange={event => {
-                                    onChange(event);
-                                    setCategory(event.target.value);
-                                }}
-                            />
-                        }
+                        options={categories}
+                        getOptionLabel={option => t(option)}
+                        renderInput={(params) => <TextField {...params} label={t('category')} />}
                     />
                     <br />
                     <Controller

@@ -161,6 +161,19 @@ class FetchService {
             errorNotification(json, " ");
         }
     }
+
+    getCategories = async () => {
+        const response = await fetch(URL + "furnitures/categories", {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
 }
 
 export default new FetchService();

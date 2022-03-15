@@ -48,5 +48,9 @@
     "file.uploaded": "Pomyślnie wgrano zdjęcie",
     "file.details": "Maksymalny rozmiar pliku: 5MB, akceptowane rozszerzenia: jpg|png",
     "wrong.file.extension": "Niepoprawne rozszerzenie pliku",
-    "wrong.file.size": "Zbyt duży rozmiar pliku"
+    "wrong.file.size": "Zbyt duży rozmiar pliku",
+    "category.bed": "Łóżko",
+    "category.sofa": "Kanapa",
+    "category.table": "Stół",
+    "category.chair": "Krzesło"
 }
