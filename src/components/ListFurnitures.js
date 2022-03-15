@@ -15,9 +15,9 @@ export default function ListFurnitures() {
     const [list, setList] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
     const [pageSize, setPageSize] = React.useState(5);
+    const [currentPage, setCurrentPage] = React.useState(0);
 
     const columns = [
-        // { field: "businessKey", hide: true },
         { field: 'name', headerName: t('furniture.name'), flex: 1 },
         { field: 'category', headerName: t('category'), flex: 1 },
         { field: 'description', headerName: t('description'), flex: 1 },
@@ -25,6 +25,17 @@ export default function ListFurnitures() {
         { field: 'price', headerName: t('price'), flex: 1 }
     ];
 
+    function changePage(newPage) {
+        fetchFurnitures(newPage, pageSize);
+        setCurrentPage(newPage);
+        console.log(newPage);
+    };
+
+    function changePageSize(newPageSize) {
+        setPageSize(newPageSize);
+        fetchFurnitures(currentPage, newPageSize);
+        console.log(newPageSize);
+    };
 
     useEffect(() => {
         if (localStorage.getItem("logged") !== null) {
@@ -40,7 +51,12 @@ export default function ListFurnitures() {
             localStorage.removeItem("confirmed");
         }
         setLoading(true);
-        FetchService.getFurnitures()
+        fetchFurnitures(currentPage,pageSize);
+        
+    }, [])
+
+    function fetchFurnitures(currentPage, pageSize){
+        FetchService.getFurnitures(currentPage, pageSize)
             .then(response => {
                 if (response) {
                     setList(response);
@@ -49,8 +65,7 @@ export default function ListFurnitures() {
             }).then(() => {
                 setLoading(false);
             })
-    }, [])
-
+    }
 
     if (loading) {
         return (
@@ -63,7 +78,7 @@ export default function ListFurnitures() {
         {/* TODO przykład */}
         let image = "";
         if(list[19]) {
-            image = "data:image/png;base64," + list[19].photo;
+            image = "data:image/png;base64," + list.furnitureList[1].photo;
         }
 
         return (
@@ -77,10 +92,14 @@ export default function ListFurnitures() {
 
 
                 <DataGrid
+                    paginationMode="server"
                     getRowId={(row) => row.businessKey}
-                    rows={list}
+                    rows={list.furnitureList}
                     columns={columns}
-                    onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+                    page={currentPage}
+                    rowCount={list.totalRows}
+                    onPageChange={(newPage) => changePage(newPage)}
+                    onPageSizeChange={(newPageSize) => changePageSize(newPageSize)}
                     pageSize={pageSize}
                     rowsPerPageOptions={[5, 10, 20]}
                     pagination
