@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import FetchService from '../services/FetchService';
 import { getUsername } from '../services/UserDataService';
@@ -8,8 +8,8 @@ import BeatLoader from 'react-spinners/BeatLoader';
 export default function UserDetails() {
 
     const { t } = useTranslation();
-    const [user, setUser] = React.useState({});
-    const [loading, setLoading] = React.useState(false);
+    const [user, setUser] = useState({});
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);

@@ -9,7 +9,8 @@ export const useStyles = makeStyles(() => ({
     flexGrow: 12
   },
   toolbar: {
-    backgroundColor: 'black '
+    backgroundColor: '#013199',
+    paddingLeft: 0
   },
   homePageText: {
     fontWeight: 'bold',

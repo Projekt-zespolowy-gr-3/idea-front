@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
@@ -13,9 +12,9 @@ export default function Login() {
     const { t } = useTranslation();
     const classes = useStyles();
     const { control, formState } = useForm({ mode: "onChange" });
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [loading, setLoading] = React.useState(false);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const login = (event) => {
         event.preventDefault();

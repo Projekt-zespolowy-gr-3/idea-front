@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
 import FetchService from '../services/FetchService';
 import { Checkbox, FormControlLabel, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
@@ -9,8 +9,8 @@ export default function ListUsers() {
 
     const classes = useStyles();
     const { t } = useTranslation();
-    const [list, setList] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
+    const [list, setList] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);

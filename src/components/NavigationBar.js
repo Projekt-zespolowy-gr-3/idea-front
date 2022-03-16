@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Typography, Toolbar, FormControl, Select, MenuItem, Button } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
@@ -8,14 +8,14 @@ import { deleteFromCookies, getAccessLevels, getCurrentAccessLevel, getLanguage,
 export default function NavigationBar() {
     const { t } = useTranslation();
     const classes = useStyles();
-    const [language, setLanguage] = React.useState(getLanguage());
-    const [role, setRole] = React.useState(getCurrentAccessLevel());
+    const [language, setLanguage] = useState(getLanguage());
+    const [role, setRole] = useState(getCurrentAccessLevel());
 
     return (
         <Toolbar className={classes.toolbar}>
-            <Typography className={classes.title} variant="h6" noWrap component={Link} to="/">
-                IDEA
-            </Typography>
+            <Link to="/">
+                <img src="logo.png" alt="IDEA" height="64px"/>
+            </Link>
 
             {getCurrentAccessLevel() === "ADMIN" ?
                 <div className={classes.toolbarRoleDiv}>

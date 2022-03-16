@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, TextField } from '@material-ui/core';
 import { LoadingCss, useStyles } from '../css/Styles';
@@ -14,16 +14,16 @@ export default function AddFurniture(props) {
     const { t } = useTranslation();
     const classes = useStyles();
     const { control, formState } = useForm({ mode: "onChange" });
-    const [name, setName] = React.useState("");
-    const [description, setDescription] = React.useState("");
-    const [category, setCategory] = React.useState("");
-    const [categories, setCategories] = React.useState([]);
-    const [price, setPrice] = React.useState("");
-    const [amount, setAmount] = React.useState("");
-    const [photo, setPhoto] = React.useState("");
-    const [loading, setLoading] = React.useState(false);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [categories, setCategories] = useState([]);
+    const [price, setPrice] = useState("");
+    const [amount, setAmount] = useState("");
+    const [photo, setPhoto] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         FetchService.getCategories()
             .then(response => {
                 if (response) {
@@ -115,17 +115,28 @@ export default function AddFurniture(props) {
                         }
                     />
                     <br />
-                    <Autocomplete
-                        fullWidth
-                        value={category}
-                        onChange={(event, newCategory) => {
-                            setCategory(newCategory);
+                    <Controller
+                        name={"category"}
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                            required: { value: true, message: t('required') },
                         }}
-                        options={categories}
-                        getOptionLabel={option => t(option)}
-                        renderInput={(params) => <TextField {...params} label={t('category')} />}
+                        render={({ field: { onChange }, fieldState: { error } }) =>
+                            <Autocomplete
+                                fullWidth
+                                error={!!error}
+                                value={category}
+                                onChange={(event, newCategory) => {
+                                    onChange(event);
+                                    setCategory(newCategory);
+                                }}
+                                options={categories}
+                                getOptionLabel={option => t(option)}
+                                renderInput={(params) => <TextField {...params} label={t('category')} />}
+                            />
+                        }
                     />
-                    <br />
                     <Controller
                         name={"amount"}
                         control={control}

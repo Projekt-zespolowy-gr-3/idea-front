@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
@@ -11,13 +11,13 @@ export default function Register() {
     const { t } = useTranslation();
     const classes = useStyles();
     const { control, formState, getValues } = useForm({ mode: "onChange" });
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [repeatPassword, setRepeatPassword] = React.useState("");
-    const [name, setName] = React.useState("");
-    const [surname, setSurname] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [loading, setLoading] = React.useState(false);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
+    const [name, setName] = useState("");
+    const [surname, setSurname] = useState("");
+    const [email, setEmail] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const register = (event) => {
         event.preventDefault();

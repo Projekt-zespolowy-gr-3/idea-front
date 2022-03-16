@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
 import FetchService from '../services/FetchService';
 import { Paper } from '@material-ui/core';
@@ -7,15 +7,14 @@ import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
 
-
 export default function ListFurnitures() {
 
     const classes = useStyles();
     const { t } = useTranslation();
-    const [list, setList] = React.useState([]);
-    const [loading, setLoading] = React.useState(false);
-    const [pageSize, setPageSize] = React.useState(5);
-    const [currentPage, setCurrentPage] = React.useState(0);
+    const [list, setList] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [pageSize, setPageSize] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0);
 
     const columns = [
         { field: 'name', headerName: t('furniture.name'), flex: 1 },
@@ -29,13 +28,13 @@ export default function ListFurnitures() {
         fetchFurnitures(newPage, pageSize);
         setCurrentPage(newPage);
         console.log(newPage);
-    };
+    }
 
     function changePageSize(newPageSize) {
         setPageSize(newPageSize);
         fetchFurnitures(currentPage, newPageSize);
         console.log(newPageSize);
-    };
+    }
 
     useEffect(() => {
         if (localStorage.getItem("logged") !== null) {
@@ -59,7 +58,7 @@ export default function ListFurnitures() {
         FetchService.getFurnitures(currentPage, pageSize)
             .then(response => {
                 if (response) {
-                    response.forEach(f => f.category = t(f.category));
+                    response.furnitureList.forEach(f => f.category = t(f.category));
                     setList(response);
                     console.log(response);
                 }
