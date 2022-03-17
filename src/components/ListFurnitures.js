@@ -55,6 +55,7 @@ export default function ListFurnitures() {
     }, [])
 
     function fetchFurnitures(currentPage, pageSize){
+        setLoading(true);
         FetchService.getFurnitures(currentPage, pageSize)
             .then(response => {
                 if (response) {

@@ -41,7 +41,7 @@ class FetchService {
         });
         console.log(response)
         if(response.ok) {
-            return await response.json();
+            return await response.text();
         } else {
             let json = await response.text();
             errorNotification(json, " ");
@@ -56,7 +56,7 @@ class FetchService {
             }
         });
         if(response.ok) {
-            return await response.json();
+            return await response.text();
         } else {
             let json = await response.text();
             errorNotification(json, " ");
