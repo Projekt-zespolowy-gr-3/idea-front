@@ -53,6 +53,11 @@ export const useStyles = makeStyles(() => ({
   },
   tableHeaders: {
     fontWeight: 'bold'
+  },
+  autocomplete: {
+    backgroundColor: '#C0C0C0',
+    borderRadius: '3px',
+    margin: '8px 0 4px 0'
   }
 }), { index: 1 });
 

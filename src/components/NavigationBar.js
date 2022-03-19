@@ -13,9 +13,11 @@ export default function NavigationBar() {
 
     return (
         <Toolbar className={classes.toolbar}>
-            <Link to="/">
-                <img src="logo.png" alt="IDEA" height="64px"/>
-            </Link>
+            <Typography className={classes.title}>
+                <Link to="/">
+                    <img src="logo.png" alt="IDEA" height="64px" />
+                </Link>
+            </Typography>
 
             {getCurrentAccessLevel() === "ADMIN" ?
                 <div className={classes.toolbarRoleDiv}>

@@ -124,6 +124,7 @@ export default function AddFurniture(props) {
                         }}
                         render={({ field: { onChange }, fieldState: { error } }) =>
                             <Autocomplete
+                                className={classes.autocomplete}
                                 fullWidth
                                 error={!!error}
                                 value={category}
