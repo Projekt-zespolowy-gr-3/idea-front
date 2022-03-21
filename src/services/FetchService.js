@@ -82,7 +82,7 @@ class FetchService {
             headers: getHeader()
         });
         if(response.ok) {
-            return await response.json();
+            return await response.text();
         } else {
             let json = await response.text();
             errorNotification(json, " ");

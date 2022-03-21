@@ -14,7 +14,7 @@ export default function NavigationBar() {
     return (
         <Toolbar className={classes.toolbar}>
             <Typography className={classes.title} onClick={() => window.location.reload()}>
-                <img src="logo.png" alt="IDEA" height="64px" />
+                <img className={classes.logo} src="logo.png" alt="IDEA" height="64px" />
             </Typography>
 
             {getCurrentAccessLevel() === "ADMIN" ?

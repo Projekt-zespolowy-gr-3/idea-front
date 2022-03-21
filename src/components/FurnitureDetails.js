@@ -4,13 +4,13 @@ import { Button, TextField } from '@material-ui/core';
 import FetchService from '../services/FetchService';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useTranslation } from 'react-i18next';
-import Autocomplete from "@mui/material/Autocomplete";
 
 export default function FurnitureDetails(props) {
     const classes = useStyles();
     const { t } = useTranslation();
     const [furniture, setFurniture] = useState({});
     const [loading, setLoading] = useState(false);
+    const [image, setImage] = useState("");
 
     useEffect(() => {
         setLoading(true);
@@ -18,10 +18,10 @@ export default function FurnitureDetails(props) {
             .then(response => {
                 if (response) {
                     setFurniture(response);
+                    setImage("data:image/png;base64," + response.photo);
                 }
             }).then(() => {
                 setLoading(false);
-                console.log(furniture);
             })
     }, [props.furnitureKey])
 
@@ -34,11 +34,11 @@ export default function FurnitureDetails(props) {
     } else {
         return (
             <div className={classes.loginWindow}>
-                <img src={furniture.photo} />
+                <img className={classes.image} src={image} alt="" />
                 <TextField
                     fullWidth
                     autoFocus
-                    disabled="true"
+                    disabled={true}
                     margin="dense"
                     label={t('furniture.name')}
                     variant="filled"
@@ -47,7 +47,7 @@ export default function FurnitureDetails(props) {
                 <br />
                 <TextField
                     fullWidth
-                    disabled="true"
+                    disabled={true}
                     margin="dense"
                     label={t('description')}
                     variant="filled"
@@ -58,7 +58,7 @@ export default function FurnitureDetails(props) {
                 <TextField
                     fullWidth
                     margin="dense"
-                    disabled="true"
+                    disabled={true}
                     label={t('category')}
                     variant="filled"
                     value={t(furniture.category)}
@@ -67,7 +67,7 @@ export default function FurnitureDetails(props) {
                     fullWidth
                     type="number"
                     margin="dense"
-                    disabled="true"
+                    disabled={true}
                     label={t('amount')}
                     variant="filled"
                     value={furniture.amount}
@@ -75,7 +75,7 @@ export default function FurnitureDetails(props) {
                 <br />
                 <TextField
                     fullWidth
-                    disabled="true"
+                    disabled={true}
                     type="number"
                     margin="dense"
                     label={t('price')}

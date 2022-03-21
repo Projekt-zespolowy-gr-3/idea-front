@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { LoadingCss, useStyles } from '../css/Styles';
+import { LoadingCss } from '../css/Styles';
 import FetchService from '../services/FetchService';
-import { Paper, Button} from '@material-ui/core';
+import { Paper, Button } from '@material-ui/core';
 import { DataGrid } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
 import FurnitureDetails from './FurnitureDetails';
-import { useHistory } from "react-router-dom";
 
 export default function ListFurnitures() {
 
-    const history = useHistory();
-    const classes = useStyles();
     const { t } = useTranslation();
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -33,10 +30,10 @@ export default function ListFurnitures() {
             field: 'details', headerName: t('details'), flex: 1,
             renderCell: (params) => (
                 <Button variant="contained" color="secondary"
-                onClick={() => {
-                    setFurnitureKey(params.row.businessKey);
-                    setShowDetails(true);
-                }}>
+                    onClick={() => {
+                        setFurnitureKey(params.row.businessKey);
+                        setShowDetails(true);
+                    }}>
                     {t('details')}
                 </Button>)
         }
@@ -92,13 +89,6 @@ export default function ListFurnitures() {
             </div>
         )
     } else {
-
-        {/* TODO przykład */ }
-        let image = "";
-        if (list[19]) {
-            image = "data:image/png;base64," + list.furnitureList[1].photo;
-        }
-
         if (showDetails !== true) {
             return (
                 <div style={{ height: 650, width: '100%' }}>

@@ -16,7 +16,6 @@ import ListUsers from './components/ListUsers';
 import UserDetails from './components/UserDetails';
 import AddFurniture from './components/AddFurniture';
 import ListFurnitures from './components/ListFurnitures';
-import FurnitureDetails from './components/FurnitureDetails';
 
 function App() {
   const classes = useStyles();

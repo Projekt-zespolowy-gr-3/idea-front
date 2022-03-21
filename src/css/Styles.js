@@ -21,6 +21,9 @@ export const useStyles = makeStyles(() => ({
     color: 'white',
     textDecoration: 'unset'
   },
+  logo: {
+    cursor: 'pointer'
+  },
   navigationLabel: {
     color: 'white',
     textDecoration: 'unset',
@@ -58,6 +61,9 @@ export const useStyles = makeStyles(() => ({
     backgroundColor: '#C0C0C0',
     borderRadius: '3px',
     margin: '8px 0 4px 0'
+  },
+  image: {
+    maxHeight: '20em'
   }
 }), { index: 1 });
 
