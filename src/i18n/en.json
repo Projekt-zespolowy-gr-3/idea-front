@@ -51,5 +51,8 @@
     "category.bed": "Bed",
     "category.sofa": "Sofa",
     "category.table": "Table",
-    "category.chair": "Chair"
+    "category.chair": "Chair",
+    "details":"Szczegóły",
+    "go.back":"Return to furniture list",
+    "add.cart":"Add product to the cart"
 }

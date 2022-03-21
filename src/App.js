@@ -16,6 +16,7 @@ import ListUsers from './components/ListUsers';
 import UserDetails from './components/UserDetails';
 import AddFurniture from './components/AddFurniture';
 import ListFurnitures from './components/ListFurnitures';
+import FurnitureDetails from './components/FurnitureDetails';
 
 function App() {
   const classes = useStyles();
@@ -28,7 +29,6 @@ function App() {
           <div className={classes.root}>
           <Switch>
             <Route exact path="/" component={ListFurnitures} />
-
             <RestrictedRoute path="/login" component={Login} />
             <RestrictedRoute path="/register" component={Register} />
             <RestrictedRoute path="/confirm" component={Confirm} />

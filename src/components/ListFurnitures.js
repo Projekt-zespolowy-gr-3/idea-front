@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
 import FetchService from '../services/FetchService';
-import { Paper } from '@material-ui/core';
+import { Paper, Button} from '@material-ui/core';
 import { DataGrid } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { successNotification } from '../utils/Notifications';
 import FurnitureDetails from './FurnitureDetails';
+import { useHistory } from "react-router-dom";
 
 export default function ListFurnitures() {
 
+    const history = useHistory();
     const classes = useStyles();
     const { t } = useTranslation();
     const [list, setList] = useState([]);
@@ -22,19 +24,22 @@ export default function ListFurnitures() {
     const columns = [
         {
             field: 'name', headerName: t('furniture.name'), flex: 1,
-            disableClickEventBubbling: true, renderCell: (params) => (
-                <label onClick={() => {
-                    setFurnitureKey(params.row.businessKey);
-                    setShowDetails(true);
-                }}>
-                    {params.row.name}
-                </label>
-            )
         },
         { field: 'category', headerName: t('category'), flex: 1 },
         { field: 'description', headerName: t('description'), flex: 1 },
         { field: 'amount', headerName: t('amount'), flex: 1 },
-        { field: 'price', headerName: t('price'), flex: 1 }
+        { field: 'price', headerName: t('price'), flex: 1 },
+        {
+            field: 'details', headerName: t('details'), flex: 1,
+            renderCell: (params) => (
+                <Button variant="contained" color="secondary"
+                onClick={() => {
+                    setFurnitureKey(params.row.businessKey);
+                    setShowDetails(true);
+                }}>
+                    {t('details')}
+                </Button>)
+        }
     ];
 
     function changePage(newPage) {
@@ -100,10 +105,6 @@ export default function ListFurnitures() {
                     <Paper style={{ fontSize: '32px' }}>
                         {t('furniture.list')}
                     </Paper>
-
-                    {/* TODO przykład */}
-                    <img src={image} />
-
 
                     <DataGrid
                         paginationMode="server"
