@@ -3,9 +3,12 @@ import { Typography, Toolbar, FormControl, Select, MenuItem, Button } from '@mat
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useStyles } from '../css/Styles';
+import { useHistory } from "react-router-dom";
 import { deleteFromCookies, getAccessLevels, getCurrentAccessLevel, getLanguage, getUsername } from '../services/UserDataService';
 
 export default function NavigationBar() {
+
+    let history = useHistory();
     const { t } = useTranslation();
     const classes = useStyles();
     const [language, setLanguage] = useState(getLanguage());
@@ -13,7 +16,7 @@ export default function NavigationBar() {
 
     return (
         <Toolbar className={classes.toolbar}>
-            <Typography className={classes.title} onClick={() => window.location.reload()}>
+            <Typography className={classes.title} onClick={() => history.push("/")}>
                 <img className={classes.logo} src="logo.png" alt="IDEA" height="64px" />
             </Typography>
 

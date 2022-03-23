@@ -4,6 +4,7 @@ import { Button, TextField } from '@material-ui/core';
 import FetchService from '../services/FetchService';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useTranslation } from 'react-i18next';
+import CartService from '../services/CartService';
 
 export default function FurnitureDetails(props) {
     const classes = useStyles();
@@ -84,11 +85,9 @@ export default function FurnitureDetails(props) {
                 />
                 <br />
                 <div className={classes.loginButton}>
-                    <form onSubmit={() => { }}>
-                        <Button type="submit" variant="contained" >
+                        <Button type="submit" variant="contained"  onClick={() => {CartService.addItem(furniture, 1)}}>
                             {t('add.cart')}
                         </Button>
-                    </form>
                     <br/>
                     <form onSubmit={() => {
                         props.history.push("/")
