@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { useStyles } from '../css/Styles';
 import { useHistory } from "react-router-dom";
 import { deleteFromCookies, getAccessLevels, getCurrentAccessLevel, getLanguage, getUsername } from '../services/UserDataService';
+import CartService from '../services/CartService';
 
 export default function NavigationBar() {
 
@@ -63,10 +64,18 @@ export default function NavigationBar() {
                 </Select>
             </FormControl>
 
+            {getUsername() !== "" ?
+                <FormControl>
+                    <Typography className={classes.navigationRoleLabel} component={Link} to="/cart">
+                        {t('cart')}
+                    </Typography>
+                </FormControl> : null}
+
             {getUsername() ?
                 <React.Fragment>
                     <Button className={classes.navigationLabel} onClick={() => {
                         deleteFromCookies('token');
+                        CartService.clearCart();
                         window.location.replace("/");
                         sessionStorage.removeItem("role");
                     }}>

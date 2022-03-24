@@ -4,9 +4,12 @@ import { Button, TextField } from '@material-ui/core';
 import FetchService from '../services/FetchService';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from "react-router-dom";
 import CartService from '../services/CartService';
+import { successNotification } from '../utils/Notifications';
 
 export default function FurnitureDetails(props) {
+    let history = useHistory();
     const classes = useStyles();
     const { t } = useTranslation();
     const [furniture, setFurniture] = useState({});
@@ -25,6 +28,15 @@ export default function FurnitureDetails(props) {
                 setLoading(false);
             })
     }, [props.furnitureKey])
+
+    function  isButtonDisabled(furniture){
+        let currentCartQuantity = CartService.getItemQuantity(furniture.businessKey);
+        if( currentCartQuantity + 1 > furniture.amount ){
+            return true;
+        }else{
+            return false;
+        }
+    };
 
     if (loading) {
         return (
@@ -77,7 +89,7 @@ export default function FurnitureDetails(props) {
                 <TextField
                     fullWidth
                     disabled={true}
-                    type="number"
+                    type="number" 
                     margin="dense"
                     label={t('price')}
                     variant="filled"
@@ -85,12 +97,16 @@ export default function FurnitureDetails(props) {
                 />
                 <br />
                 <div className={classes.loginButton}>
-                        <Button type="submit" variant="contained"  onClick={() => {CartService.addItem(furniture, 1)}}>
+                        <Button type="submit" disabled={isButtonDisabled(furniture)} variant="contained"  onClick={() => {
+                            CartService.addItem(furniture, 1);
+                            history.push("/");
+                            successNotification(t('success'),t('added.cart.message'),3000)
+                            }}>
                             {t('add.cart')}
                         </Button>
                     <br/>
                     <form onSubmit={() => {
-                        props.history.push("/")
+                        history.push("/")
                     }}>
                         <Button type="submit" variant="contained">
                             {t('go.back')}

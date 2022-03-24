@@ -16,6 +16,8 @@ import ListUsers from './components/ListUsers';
 import UserDetails from './components/UserDetails';
 import AddFurniture from './components/AddFurniture';
 import ListFurnitures from './components/ListFurnitures';
+import Cart from './components/Cart';
+
 
 function App() {
   const classes = useStyles();
@@ -34,6 +36,7 @@ function App() {
 
             <PrivateRoute path="/users" component={ListUsers} roles={["ADMIN"]} />
             <PrivateRoute path="/user" component={UserDetails} roles={["CLIENT"]} />
+            <PrivateRoute path="/cart" component={Cart} roles={["CLIENT"]} />
             <PrivateRoute path="/furniture" component={AddFurniture} roles={["ADMIN"]} />
 
             <Route path="/accessDenied" component={AccessDenied} />

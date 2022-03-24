@@ -55,5 +55,8 @@
     "category.chair": "Krzesło",
     "details":"Szczegóły",
     "go.back":"Powrót do listy mebli",
-    "add.cart":"Dodaj produkt do koszyka"
+    "add.cart":"Dodaj produkt do koszyka",
+    "added.cart.message":"Produkt dodano do koszyka",
+    "cart":"Koszyk",
+    "quantity":"Wybrana liczba"
 }

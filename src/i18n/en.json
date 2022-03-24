@@ -54,5 +54,8 @@
     "category.chair": "Chair",
     "details":"Szczegóły",
     "go.back":"Return to furniture list",
-    "add.cart":"Add product to the cart"
+    "add.cart":"Add product to the cart",
+    "added.cart.message": "Product has been added to the cart",
+    "cart":"Shopping cart",
+    "quantity":"Selected quantity"
 }
