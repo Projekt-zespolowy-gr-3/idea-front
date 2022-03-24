@@ -105,6 +105,7 @@ export default function FurnitureDetails(props) {
                             {t('add.cart')}
                         </Button>
                     <br/>
+                    <br/>
                     <form onSubmit={() => {
                         history.push("/")
                     }}>

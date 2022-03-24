@@ -58,5 +58,8 @@
     "add.cart":"Dodaj produkt do koszyka",
     "added.cart.message":"Produkt dodano do koszyka",
     "cart":"Koszyk",
-    "quantity":"Wybrana liczba"
+    "quantity":"Wybrana liczba",
+    "totalPrice":"Cena całkowita: ",
+    "placeOrder":"Złóż zamówienie",
+    "remove":"Usuń"
 }

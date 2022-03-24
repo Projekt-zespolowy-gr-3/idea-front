@@ -27,6 +27,10 @@ class CartService {
     getItemCount = () => {
         return total();
     }
+
+    removeItemFromTheCart = (id) => {
+        remove(id);
+    }
 }
 
 export default new CartService();

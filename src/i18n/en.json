@@ -57,5 +57,8 @@
     "add.cart":"Add product to the cart",
     "added.cart.message": "Product has been added to the cart",
     "cart":"Shopping cart",
-    "quantity":"Selected quantity"
+    "quantity":"Selected quantity",
+    "totalPrice":"Total price: ",
+    "placeOrder":"Place order",
+    "remove":"Remove"
 }
