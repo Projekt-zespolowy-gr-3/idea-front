@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useHistory } from "react-router-dom";
 import CartService from '../services/CartService';
 import { successNotification } from '../utils/Notifications';
+import { getCurrentAccessLevel } from '../services/UserDataService';
 
 export default function FurnitureDetails(props) {
     let history = useHistory();
@@ -97,13 +98,14 @@ export default function FurnitureDetails(props) {
                 />
                 <br />
                 <div className={classes.loginButton}>
+                    {getCurrentAccessLevel() === "CLIENT" ? 
                         <Button type="submit" disabled={isButtonDisabled(furniture)} variant="contained"  onClick={() => {
                             CartService.addItem(furniture, 1);
                             history.push("/");
                             successNotification(t('success'),t('added.cart.message'),3000)
                             }}>
                             {t('add.cart')}
-                        </Button>
+                        </Button> : null }
                     <br/>
                     <br/>
                     <form onSubmit={() => {

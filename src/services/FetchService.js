@@ -191,6 +191,32 @@ class FetchService {
             errorNotification(json, " ");
         } 
     }
+
+    getOrders = async () => {
+        const response = await fetch(URL + "orders", {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
+
+    getUserOrders = async (username) => {
+        const response = await fetch(URL + "orders/" + username, {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
 }
 
 export default new FetchService();

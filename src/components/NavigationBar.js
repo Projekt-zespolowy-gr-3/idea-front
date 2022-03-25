@@ -29,6 +29,9 @@ export default function NavigationBar() {
                     <Typography className={classes.navigationRoleLabel} component={Link} to="/furniture">
                         {t('add.furniture')}
                     </Typography>
+                    <Typography className={classes.navigationRoleLabel} component={Link} to="/orders">
+                        {t('list.all.orders')}
+                    </Typography>
                 </div>
                 : null}
 
@@ -36,6 +39,9 @@ export default function NavigationBar() {
                 <div className={classes.toolbarRoleDiv}>
                     <Typography className={classes.navigationRoleLabel} component={Link} to="/user">
                         {t('user.details')}
+                    </Typography>
+                    <Typography className={classes.navigationRoleLabel} component={Link} to="/myorders">
+                        {t('list.my.orders')}
                     </Typography>
                 </div>
                 : null}

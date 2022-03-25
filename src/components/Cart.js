@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
-import { Paper, Button, Table, TableBody, TableCell, TableHead, TableRow, Input } from '@material-ui/core';
+import { Paper, Button, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import CartService from '../services/CartService';
@@ -21,12 +21,6 @@ export default function Cart(props) {
         }
         return totalPrice;
     }
-
-    const columns = [
-        { field: 'name', headerName: t('furniture.name'), flex: 1 },
-        { field: 'price', headerName: t('price'), flex: 1 },
-        { field: 'quantity', headerName: t('quantity'), flex: 1 },
-    ];
 
     if (loading) {
         return (
@@ -81,6 +75,7 @@ export default function Cart(props) {
                         {t('totalPrice')} {totalPrice()}
                         <br/>
                         <Button onClick={() => {
+                            setLoading(true);
                             FetchService.placeOrder()
                             .then(response => {
                                 if (response) {

@@ -64,5 +64,10 @@
     "remove":"Usuń",
     "order.add.success":"Zamówienie złożone",
     "user.not.found.error":"Wystąpił nieoczekiwany błąd podczas składania zamówienia",
-    "furniture.stock.insufficient":"Stan magazynowy uległ zmianie zamówienie nie może zostać złożone"
+    "furniture.stock.insufficient":"Stan magazynowy uległ zmianie zamówienie nie może zostać złożone",
+    "list.all.orders": "Zobacz wszystkie złożone zamówienia",
+    "id": "Identyfikator",
+    "order.date": "Data złożenia zamówienia",
+    "user": "Użytkownik",
+    "list.my.orders": "Zobacz swoje zamówienia"
 }

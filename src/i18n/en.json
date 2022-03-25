@@ -63,5 +63,10 @@
     "remove":"Remove",
     "order.add.success":"Order has been placed",
     "user.not.found.error":"Unexpected error while placing order",
-    "furniture.stock.insufficient":"Furniture stock has changed, order cannot be placed"
+    "furniture.stock.insufficient":"Furniture stock has changed, order cannot be placed",
+    "list.all.orders": "List of orders",
+    "id": "Identity",
+    "order.date": "Order placement date",
+    "user": "User",
+    "list.my.orders": "List of your orders"
 }

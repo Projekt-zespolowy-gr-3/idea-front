@@ -17,6 +17,8 @@ import UserDetails from './components/UserDetails';
 import AddFurniture from './components/AddFurniture';
 import ListFurnitures from './components/ListFurnitures';
 import Cart from './components/Cart';
+import ListOrders from './components/ListOrders';
+import ListUserOrders from './components/ListUserOrders';
 
 
 function App() {
@@ -38,6 +40,8 @@ function App() {
             <PrivateRoute path="/user" component={UserDetails} roles={["CLIENT"]} />
             <PrivateRoute path="/cart" component={Cart} roles={["CLIENT"]} />
             <PrivateRoute path="/furniture" component={AddFurniture} roles={["ADMIN"]} />
+            <PrivateRoute path="/orders" component={ListOrders} roles={["ADMIN"]} />
+            <PrivateRoute path="/myorders" component={ListUserOrders} roles={["CLIENT"]} />
 
             <Route path="/accessDenied" component={AccessDenied} />
             <Route component={PageNotFound} />

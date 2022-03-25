@@ -1,4 +1,4 @@
-import { add, total, list, exists, remove, quantity, destroy, get } from 'cart-localstorage' 
+import { add, total, list, remove, destroy, get } from 'cart-localstorage' 
 
 class CartService {
 
@@ -13,7 +13,7 @@ class CartService {
     }
 
     getItemQuantity = (uuid) => {
-        if (get(uuid) == undefined){
+        if (get(uuid) === undefined){
             return 0;
         }else{
             return get(uuid).quantity;
