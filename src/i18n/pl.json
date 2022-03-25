@@ -69,5 +69,6 @@
     "id": "Identyfikator",
     "order.date": "Data złożenia zamówienia",
     "user": "Użytkownik",
-    "list.my.orders": "Zobacz swoje zamówienia"
+    "list.my.orders": "Zobacz swoje zamówienia",
+    "order.furnitures": "Meble wchodzące w skład zamówienia"
 }

@@ -217,6 +217,19 @@ class FetchService {
             errorNotification(json, " ");
         }
     }
+
+    getOrder = async (key) => {
+        const response = await fetch(URL + "orders/order/" + key, {
+            method: "GET",
+            headers: getHeader()
+        });
+        if(response.ok) {
+            return await response.json();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
 }
 
 export default new FetchService();

@@ -5,6 +5,7 @@ import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from 
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { getUsername } from '../services/UserDataService';
+import OrderDetails from './OrderDetails';
 
 export default function ListUserOrders() {
 
@@ -12,6 +13,8 @@ export default function ListUserOrders() {
     const { t } = useTranslation();
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [showDetails, setShowDetails] = useState(false);
+    const [orderKey, setOrderKey] = useState("");
 
     useEffect(() => {
         setLoading(true);
@@ -19,7 +22,6 @@ export default function ListUserOrders() {
             .then(response => {
                 if (response) {
                     setList(response);
-                    console.log(response)
                 }
             }).then(() => {
                 setLoading(false);
@@ -34,39 +36,46 @@ export default function ListUserOrders() {
             </div>
         )
     } else {
-        return (
-            <Paper className={classes.table}>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center" className={classes.tableHeaders}>
-                                {t('id')}
-                            </TableCell>
-                            <TableCell align="center" className={classes.tableHeaders}>
-                                {t('order.date')}
-                            </TableCell>
-                            <TableCell align="center" className={classes.tableHeaders} />
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {list.map(row => (
-                            <TableRow key={row.businessKey}>
-                                <TableCell align="center">
-                                    {row.businessKey}
+        if (showDetails !== true) {
+            return (
+                <Paper className={classes.table}>
+                    <Table>
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center" className={classes.tableHeaders}>
+                                    {t('id')}
                                 </TableCell>
-                                <TableCell align="center">
-                                    {row.date}
+                                <TableCell align="center" className={classes.tableHeaders}>
+                                    {t('order.date')}
                                 </TableCell>
-                                <TableCell align="center">
-                                    <Button variant="contained" color="secondary">
-                                        {t('details')}
-                                    </Button>
-                                </TableCell>
+                                <TableCell align="center" className={classes.tableHeaders} />
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
-        )
+                        </TableHead>
+                        <TableBody>
+                            {list.map(row => (
+                                <TableRow key={row.businessKey}>
+                                    <TableCell align="center">
+                                        {row.businessKey}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        {row.date}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="contained" color="secondary" onClick={() => {
+                                            setOrderKey(row.businessKey);
+                                            setShowDetails(true);
+                                        }}>
+                                            {t('details')}
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Paper>
+            )
+        } else {
+            return (<OrderDetails orderKey={orderKey} />)
+        }
     }
 }

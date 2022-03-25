@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { LoadingCss, useStyles } from '../css/Styles';
-import FetchService from '../services/FetchService';
 import { Button, Paper, Table, TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
-import { useTranslation } from 'react-i18next';
+import FetchService from '../services/FetchService';
 import BeatLoader from 'react-spinners/BeatLoader';
-import OrderDetails from './OrderDetails';
+import { useTranslation } from 'react-i18next';
 
-export default function ListOrders() {
+export default function OrderDetails(props) {
 
     const classes = useStyles();
     const { t } = useTranslation();
-    const [list, setList] = useState([]);
+    const [order, setOrder] = useState({});
+    const [furnitures, setFurnitures] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [showDetails, setShowDetails] = useState(false);
-    const [orderKey, setOrderKey] = useState("");
 
     useEffect(() => {
         setLoading(true);
-        FetchService.getOrders()
+        FetchService.getOrder(props.orderKey)
             .then(response => {
                 if (response) {
-                    setList(response);
+                    setOrder(response);
+                    setFurnitures(response.furnitureObjects);
                 }
             }).then(() => {
                 setLoading(false);
             })
-    }, [])
+    }, [props.orderKey])
 
 
     if (loading) {
@@ -35,52 +34,58 @@ export default function ListOrders() {
             </div>
         )
     } else {
-        if (showDetails !== true) {
-            return (
+        return (
+            <div>
+                <h2>{t('id')}: {order.businessKey}</h2>
+                <h2>{t('user')}: {order.username}</h2>
+                <h2>{t('order.date')}: {order.date}</h2>
+                <br />
+                <h2>{t('order.furnitures')}:</h2>
                 <Paper className={classes.table}>
                     <Table>
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center" className={classes.tableHeaders}>
-                                    {t('id')}
+                                    {t('furniture.name')}
                                 </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders}>
-                                    {t('user')}
+                                    {t('description')}
                                 </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders}>
-                                    {t('order.date')}
+                                    {t('category')}
                                 </TableCell>
-                                <TableCell align="center" className={classes.tableHeaders} />
+                                <TableCell align="center" className={classes.tableHeaders}>
+                                    {t('price')}
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {list.map(row => (
+                            {furnitures.map(row => (
                                 <TableRow key={row.businessKey}>
                                     <TableCell align="center">
-                                        {row.businessKey}
+                                        {row.name}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.username}
+                                        {row.description}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {row.date}
+                                        {t(row.category)}
                                     </TableCell>
                                     <TableCell align="center">
-                                        <Button variant="contained" color="secondary" onClick={() => {
-                                            setOrderKey(row.businessKey);
-                                            setShowDetails(true);
-                                        }}>
-                                            {t('details')}
-                                        </Button>
+                                        {row.price}
                                     </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
                     </Table>
                 </Paper>
-            )
-        } else {
-            return (<OrderDetails orderKey={orderKey} />)
-        }
+                <br /><br />
+                <Button variant="contained" color="secondary" onClick={() => {
+                    window.location.reload();
+                }}>
+                    {t('return')}
+                </Button>
+            </div>
+        )
     }
 }
