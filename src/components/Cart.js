@@ -72,9 +72,10 @@ export default function Cart(props) {
                         </TableBody>
                     </Table>
                     <div>
-                        {t('totalPrice')} {totalPrice()}
-                        <br/>
-                        <Button onClick={() => {
+                        <br />
+                        {t('totalPrice')} {totalPrice()} PLN
+                        <br/><br/>
+                        <Button variant='contained' color='secondary' onClick={() => {
                             setLoading(true);
                             FetchService.placeOrder()
                             .then(response => {
@@ -87,6 +88,7 @@ export default function Cart(props) {
                         }}>
                             {t('placeOrder')}
                         </Button>
+                        <br/><br/>
                     </div>
                 </Paper>
             </div>
