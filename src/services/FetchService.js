@@ -1,6 +1,6 @@
 import { errorNotification } from '../utils/Notifications';
-import { getHeader } from './UserDataService';
-
+import { getHeader, getUsername } from './UserDataService';
+import CartService from './CartService';
 const URL = "http://localhost:8080/idea/";
 
 class FetchService {
@@ -173,6 +173,23 @@ class FetchService {
             let json = await response.text();
             errorNotification(json, " ");
         }
+    }
+
+    placeOrder = async () => {
+        const response = await fetch(URL + "orders", {
+            method: "POST",
+            headers: getHeader(),
+            body: JSON.stringify({
+                "username": getUsername(),
+                "furnitures": CartService.getItems()
+            })
+        });
+        if(response.ok) {
+            return await response.text();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        } 
     }
 }
 

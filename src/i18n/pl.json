@@ -61,5 +61,8 @@
     "quantity":"Wybrana liczba",
     "totalPrice":"Cena całkowita: ",
     "placeOrder":"Złóż zamówienie",
-    "remove":"Usuń"
+    "remove":"Usuń",
+    "order.add.success":"Zamówienie złożone",
+    "user.not.found.error":"Wystąpił nieoczekiwany błąd podczas składania zamówienia",
+    "furniture.stock.insufficient":"Stan magazynowy uległ zmianie zamówienie nie może zostać złożone"
 }

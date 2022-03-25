@@ -64,7 +64,7 @@ export default function NavigationBar() {
                 </Select>
             </FormControl>
 
-            {getUsername() !== "" ?
+            {getCurrentAccessLevel() === "CLIENT" ?
                 <FormControl>
                     <Typography className={classes.navigationRoleLabel} component={Link} to="/cart">
                         {t('cart')}

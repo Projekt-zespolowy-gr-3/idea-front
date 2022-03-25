@@ -4,6 +4,8 @@ import { Paper, Button, Table, TableBody, TableCell, TableHead, TableRow, Input 
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
 import CartService from '../services/CartService';
+import FetchService from '../services/FetchService';
+import { successNotification } from '../utils/Notifications';
 
 export default function Cart(props) {
 
@@ -15,7 +17,7 @@ export default function Cart(props) {
         let cart = CartService.getItems();
         let totalPrice = 0.0;
         for (let i = 0 ; i < cart.length ; i ++ ){
-            totalPrice = cart[i].price * cart[i].quantity;
+            totalPrice += cart[i].price * cart[i].quantity;
         }
         return totalPrice;
     }
@@ -78,7 +80,16 @@ export default function Cart(props) {
                     <div>
                         {t('totalPrice')} {totalPrice()}
                         <br/>
-                        <Button >
+                        <Button onClick={() => {
+                            FetchService.placeOrder()
+                            .then(response => {
+                                if (response) {
+                                CartService.clearCart();
+                                successNotification(t('success'),t(response),3000)
+                                props.history.push("/");
+                                }
+                            })
+                        }}>
                             {t('placeOrder')}
                         </Button>
                     </div>

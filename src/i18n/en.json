@@ -60,5 +60,8 @@
     "quantity":"Selected quantity",
     "totalPrice":"Total price: ",
     "placeOrder":"Place order",
-    "remove":"Remove"
+    "remove":"Remove",
+    "order.add.success":"Order has been placed",
+    "user.not.found.error":"Unexpected error while placing order",
+    "furniture.stock.insufficient":"Furniture stock has changed, order cannot be placed"
 }
