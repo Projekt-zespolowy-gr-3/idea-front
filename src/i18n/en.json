@@ -70,5 +70,6 @@
     "order.date": "Order placement date",
     "user": "User",
     "list.my.orders": "List of your orders",
-    "order.furnitures": "Furniture included in the order"
+    "order.furnitures": "Furniture included in the order",
+    "search": "Search"
 }

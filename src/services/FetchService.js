@@ -149,8 +149,8 @@ class FetchService {
         }
     }
 
-    getFurnitures = async (currentPage, pageSize) => {
-        const response = await fetch(URL + "furnitures?page=" + currentPage + "&size=" + pageSize, {
+    getFurnitures = async (query, currentPage, pageSize) => {
+        const response = await fetch(`${URL}furnitures?page=${currentPage}&size=${pageSize}&query=${query}`, {
             method: "GET",
             headers: getHeader()
         });

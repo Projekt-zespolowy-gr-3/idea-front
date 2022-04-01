@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { LoadingCss } from '../css/Styles';
 import FetchService from '../services/FetchService';
-import { Paper, Button } from '@material-ui/core';
+import { Paper, Button, TextField } from '@material-ui/core';
 import { DataGrid } from '@mui/x-data-grid';
 import { useTranslation } from 'react-i18next';
 import BeatLoader from 'react-spinners/BeatLoader';
@@ -13,6 +13,7 @@ export default function ListFurnitures() {
     const { t } = useTranslation();
     const [list, setList] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [query, setQuery] = useState("");
     const [pageSize, setPageSize] = useState(5);
     const [currentPage, setCurrentPage] = useState(0);
     const [showDetails, setShowDetails] = useState(false);
@@ -65,13 +66,15 @@ export default function ListFurnitures() {
             localStorage.removeItem("confirmed");
         }
         setLoading(true);
-        fetchFurnitures(currentPage, pageSize);
+        fetchFurnitures(query, currentPage, pageSize, true);
 
     }, [currentPage, pageSize])
 
-    function fetchFurnitures(currentPage, pageSize) {
-        setLoading(true);
-        FetchService.getFurnitures(currentPage, pageSize)
+    function fetchFurnitures(query, currentPage, pageSize, spinner) {
+        if (spinner) {
+            setLoading(true);
+        }
+        FetchService.getFurnitures(query, currentPage, pageSize)
             .then(response => {
                 if (response) {
                     response.furnitureList.forEach(f => f.category = t(f.category));
@@ -95,7 +98,17 @@ export default function ListFurnitures() {
                     <Paper style={{ fontSize: '32px' }}>
                         {t('furniture.list')}
                     </Paper>
-
+                    <TextField
+                        fullWidth
+                        margin="dense"
+                        label={t('search')}
+                        variant="filled"
+                        value={query}
+                        onChange={event => {
+                            setQuery(event.target.value);
+                            fetchFurnitures(event.target.value, currentPage, pageSize, false);
+                        }}
+                    />
                     <DataGrid
                         paginationMode="server"
                         getRowId={(row) => row.businessKey}
