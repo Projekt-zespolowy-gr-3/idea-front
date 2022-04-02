@@ -16,7 +16,7 @@ export default function Cart(props) {
     function totalPrice() {
         let cart = CartService.getItems();
         let totalPrice = 0.0;
-        for (let i = 0 ; i < cart.length ; i ++ ){
+        for (let i = 0; i < cart.length; i++) {
             totalPrice += cart[i].price * cart[i].quantity;
         }
         return totalPrice;
@@ -62,10 +62,10 @@ export default function Cart(props) {
                                         {row.quantity}
                                     </TableCell>
                                     <TableCell align="center">
-                                            <Button onClick={() => {
-                                                CartService.removeItemFromTheCart(row.id);
-                                                props.history.push("/cart");
-                                            }}>{t('remove')}</Button>
+                                        <Button onClick={() => {
+                                            CartService.removeItemFromTheCart(row.id);
+                                            props.history.push("/cart");
+                                        }}>{t('remove')}</Button>
                                     </TableCell>
                                 </TableRow>
                             ))}
@@ -74,21 +74,22 @@ export default function Cart(props) {
                     <div>
                         <br />
                         {t('totalPrice')} {totalPrice()} PLN
-                        <br/><br/>
-                        <Button variant='contained' color='secondary' onClick={() => {
-                            setLoading(true);
-                            FetchService.placeOrder()
-                            .then(response => {
-                                if (response) {
-                                CartService.clearCart();
-                                successNotification(t('success'),t(response),3000)
-                                props.history.push("/");
-                                }
-                            })
-                        }}>
+                        <br /><br />
+                        <Button variant='contained' color='secondary' disabled={CartService.getItemCount() === 0}
+                            onClick={() => {
+                                setLoading(true);
+                                FetchService.placeOrder()
+                                    .then(response => {
+                                        if (response) {
+                                            CartService.clearCart();
+                                            successNotification(t('success'), t(response), 3000)
+                                            props.history.push("/");
+                                        }
+                                    })
+                            }}>
                             {t('placeOrder')}
                         </Button>
-                        <br/><br/>
+                        <br /><br />
                     </div>
                 </Paper>
             </div>
