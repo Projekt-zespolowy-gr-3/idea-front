@@ -1,7 +1,7 @@
 import { errorNotification } from '../utils/Notifications';
 import { getHeader, getUsername } from './UserDataService';
 import CartService from './CartService';
-const URL = "http://localhost:8080/idea/";
+const URL = process.env.REACT_APP_API ? process.env.REACT_APP_API : "http://localhost:8080/idea/";
 
 class FetchService {
 
