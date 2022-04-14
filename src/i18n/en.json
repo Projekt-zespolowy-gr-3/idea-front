@@ -71,5 +71,9 @@
     "user": "User",
     "list.my.orders": "List of your orders",
     "order.furnitures": "Furniture included in the order",
-    "search": "Search"
+    "search": "Search",
+    "forgot.password": "Forgot password?",
+    "reset.link.sent": "A message with a link to reset the password has been sent to the e-mail address",
+    "reset.success": "Password was changed successfully",
+    "reset": "Provide new password"
 }

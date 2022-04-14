@@ -16,7 +16,7 @@ class FetchService {
                 "password": password
             })
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -40,7 +40,7 @@ class FetchService {
             })
         });
         console.log(response)
-        if(response.ok) {
+        if (response.ok) {
             return await response.text();
         } else {
             let json = await response.text();
@@ -55,7 +55,7 @@ class FetchService {
                 "Content-Type": "application/json"
             }
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.text();
         } else {
             let json = await response.text();
@@ -68,7 +68,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -81,7 +81,7 @@ class FetchService {
             method: "POST",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.text();
         } else {
             let json = await response.text();
@@ -94,7 +94,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -115,7 +115,7 @@ class FetchService {
                 "amount": amount
             })
         });
-        if(response.ok) {
+        if (response.ok) {
             return response;
         } else {
             let json = await response.text();
@@ -128,7 +128,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -141,7 +141,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -154,7 +154,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -167,7 +167,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -184,12 +184,12 @@ class FetchService {
                 "furnitures": CartService.getItems()
             })
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.text();
         } else {
             let json = await response.text();
             errorNotification(json, " ");
-        } 
+        }
     }
 
     getOrders = async () => {
@@ -197,7 +197,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -210,7 +210,7 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
         } else {
             let json = await response.text();
@@ -223,8 +223,37 @@ class FetchService {
             method: "GET",
             headers: getHeader()
         });
-        if(response.ok) {
+        if (response.ok) {
             return await response.json();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
+
+    reset = async (email) => {
+        const response = await fetch(URL + "reset/" + email, {
+            method: "POST",
+            headers: getHeader()
+        });
+        if (response.ok) {
+            return await response.text();
+        } else {
+            let json = await response.text();
+            errorNotification(json, " ");
+        }
+    }
+
+    changeReset = async (token, password) => {
+        const response = await fetch(URL + "changeResetPassword/" + token, {
+            method: "POST",
+            headers: getHeader(),
+            body: JSON.stringify({
+                "password": password,
+            })
+        });
+        if (response.ok) {
+            return await response.text();
         } else {
             let json = await response.text();
             errorNotification(json, " ");

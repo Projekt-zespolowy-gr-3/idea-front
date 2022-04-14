@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Button, TextField } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 import { LoadingCss, useStyles } from '../css/Styles';
 import FetchService from '../services/FetchService';
-import { saveToCookies, getFirstAccessLevel } from "../services/UserDataService";
 import BeatLoader from 'react-spinners/BeatLoader';
-import { Link } from 'react-router-dom';
+import { successNotification, errorNotification } from '../utils/Notifications';
 
-export default function Login() {
+export default function ChangeResetPassword(props) {
 
     const { t } = useTranslation();
     const classes = useStyles();
-    const { control, formState } = useForm({ mode: "onChange" });
-    const [username, setUsername] = useState("");
+    const { control, formState, getValues } = useForm({ mode: "onChange" });
     const [password, setPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
+    const [token, setToken] = useState("");
     const [loading, setLoading] = useState(false);
 
-    const login = (event) => {
+    useEffect(() => {
+        const tokenURL = new URLSearchParams(window.location.search).get("token");
+        if (tokenURL === null || tokenURL === "") {
+            errorNotification("unexpected.error", " ");
+        } else {
+            setToken(tokenURL);
+        }
+    }, [])
+
+    const reset = (event) => {
         event.preventDefault();
         setLoading(true);
-        FetchService.login(username, password)
+        FetchService.changeReset(token, password)
             .then(response => {
-                if (response && response.token) {
-                    saveToCookies("token", response.token);
-                    localStorage.setItem("logged", "");
-                    sessionStorage.setItem("role", getFirstAccessLevel());
-                    window.location.replace("/");
+                if (response) {
+                    successNotification("reset.success", " ");
                 }
             }).then(() => {
-                setLoading(false);
+                props.history.push("/");
             })
     }
-
 
     if (loading) {
         return (
@@ -43,33 +48,8 @@ export default function Login() {
     } else {
         return (
             <div className={classes.loginWindow}>
-                <form onSubmit={event => login(event)}>
-                    <Controller
-                        name={"login"}
-                        control={control}
-                        defaultValue=""
-                        rules={{
-                            required: { value: true, message: t('required') },
-                            pattern: { value: /^([a-zA-Z0-9!@$^&*]+)$/, message: t('wrong.format') }
-                        }}
-                        render={({ field: { onChange }, fieldState: { error } }) =>
-                            <TextField
-                                fullWidth
-                                autoFocus
-                                margin="dense"
-                                label={t('username')}
-                                variant="filled"
-                                error={!!error}
-                                helperText={error ? error.message : null}
-                                value={username}
-                                onChange={event => {
-                                    onChange(event);
-                                    setUsername(event.target.value);
-                                }}
-                            />
-                        }
-                    />
-                    <br />
+                <h1>{t('reset')}</h1>
+                <form onSubmit={event => reset(event)}>
                     <Controller
                         name={"password"}
                         control={control}
@@ -83,7 +63,7 @@ export default function Login() {
                                 className={classes.loginForm}
                                 fullWidth
                                 margin="dense"
-                                label={t('password')}
+                                label={t('password') + "*"}
                                 variant="filled"
                                 error={!!error}
                                 helperText={error ? error.message : null}
@@ -96,7 +76,33 @@ export default function Login() {
                             />
                         }
                     />
-                    <Link to="/reset">{t('forgot.password')}</Link>
+                    <br />
+                    <Controller
+                        name={"repeatPassword"}
+                        control={control}
+                        defaultValue=""
+                        rules={{
+                            required: { value: true, message: t('required') },
+                            validate: (value) => getValues("password") === value || t('password.repeat.error')
+                        }}
+                        render={({ field: { onChange }, fieldState: { error } }) =>
+                            <TextField
+                                className={classes.loginForm}
+                                fullWidth
+                                margin="dense"
+                                label={t('password.repeat') + "*"}
+                                variant="filled"
+                                error={!!error}
+                                helperText={error ? error.message : null}
+                                value={repeatPassword}
+                                type="password"
+                                onChange={event => {
+                                    onChange(event);
+                                    setRepeatPassword(event.target.value);
+                                }}
+                            />
+                        }
+                    />
                     <div className={classes.loginButton}>
                         <Button type="submit" variant="contained" disabled={!formState.isValid}>
                             {t('confirm')}

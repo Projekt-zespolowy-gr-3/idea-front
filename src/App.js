@@ -19,6 +19,8 @@ import ListFurnitures from './components/ListFurnitures';
 import Cart from './components/Cart';
 import ListOrders from './components/ListOrders';
 import ListUserOrders from './components/ListUserOrders';
+import ResetPassword from './components/ResetPassword';
+import ChangeResetPassword from './components/ChangeResetPassword';
 
 
 function App() {
@@ -35,6 +37,8 @@ function App() {
             <RestrictedRoute path="/login" component={Login} />
             <RestrictedRoute path="/register" component={Register} />
             <RestrictedRoute path="/confirm" component={Confirm} />
+            <RestrictedRoute path="/reset" component={ResetPassword} />
+            <RestrictedRoute path="/changeResetPassword" component={ChangeResetPassword} />
 
             <PrivateRoute path="/users" component={ListUsers} roles={["ADMIN"]} />
             <PrivateRoute path="/user" component={UserDetails} roles={["CLIENT"]} />

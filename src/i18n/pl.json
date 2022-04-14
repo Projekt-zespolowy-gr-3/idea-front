@@ -72,5 +72,9 @@
     "user": "Użytkownik",
     "list.my.orders": "Zobacz swoje zamówienia",
     "order.furnitures": "Meble wchodzące w skład zamówienia",
-    "search": "Szukaj"
+    "search": "Szukaj",
+    "forgot.password": "Zapomniałeś hasła?",
+    "reset.link.sent": "Wiadomość z linkiem resetującym hasło została wysłana na wskazany adres e-mail",
+    "reset.success": "Pomyślnie zmieniono hasło",
+    "reset": "Wprowadź nowe hasło"
 }
