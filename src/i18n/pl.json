@@ -76,5 +76,6 @@
     "forgot.password": "Zapomniałeś hasła?",
     "reset.link.sent": "Wiadomość z linkiem resetującym hasło została wysłana na wskazany adres e-mail",
     "reset.success": "Pomyślnie zmieniono hasło",
-    "reset": "Wprowadź nowe hasło"
+    "reset": "Wprowadź nowe hasło",
+    "userDetails": "Szczegóły użytkownika"
 }

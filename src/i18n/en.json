@@ -75,5 +75,6 @@
     "forgot.password": "Forgot password?",
     "reset.link.sent": "A message with a link to reset the password has been sent to the e-mail address",
     "reset.success": "Password was changed successfully",
-    "reset": "Provide new password"
+    "reset": "Provide new password",
+    "userDetails": "User details"
 }
