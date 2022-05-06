@@ -41,15 +41,13 @@ export default function ListFurnitures() {
     ];
 
     function changePage(newPage) {
-        fetchFurnitures(undefiend, newPage, pageSize);
+        fetchFurnitures("", newPage, pageSize);
         setCurrentPage(newPage);
-        console.log(newPage);
     }
 
     function changePageSize(newPageSize) {
         setPageSize(newPageSize);
-        fetchFurnitures(undefiend, currentPage, newPageSize);
-        console.log(newPageSize);
+        fetchFurnitures("", currentPage, newPageSize);
     }
 
     useEffect(() => {
