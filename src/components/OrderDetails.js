@@ -18,6 +18,7 @@ export default function OrderDetails(props) {
         FetchService.getOrder(props.orderKey)
             .then(response => {
                 if (response) {
+                    console.log(response);
                     setOrder(response);
                     setFurnitures(response.furnitureObjects);
                 }
@@ -39,7 +40,7 @@ export default function OrderDetails(props) {
                 <h2>{t('id')}: {order.businessKey}</h2>
                 <h2>{t('user')}: {order.username}</h2>
                 <h2>{t('order.date')}: {order.date}</h2>
-                <h2>{t('totalPrice')}: {order.totalPrice}</h2>
+                <h2>{t('totalPrice')}: {order.totalPrice} PLN</h2>
                 <br />
                 <h2>{t('order.furnitures')}:</h2>
                 <Paper className={classes.table}>
@@ -59,7 +60,7 @@ export default function OrderDetails(props) {
                                     {t('quantity')}
                                 </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders}>
-                                    {t('price')}
+                                    {t('price')} PLN
                                 </TableCell>
                             </TableRow>
                         </TableHead>
@@ -76,7 +77,7 @@ export default function OrderDetails(props) {
                                         {t(row.category)}
                                     </TableCell>
                                     <TableCell align="center">
-                                        {t(row.quantity)}
+                                        {t(row.cartQuantity)}
                                     </TableCell>
                                     <TableCell align="center">
                                         {row.price}
