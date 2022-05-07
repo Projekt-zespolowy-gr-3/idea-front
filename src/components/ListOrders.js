@@ -50,6 +50,9 @@ export default function ListOrders() {
                                 <TableCell align="center" className={classes.tableHeaders}>
                                     {t('order.date')}
                                 </TableCell>
+                                <TableCell align="center" className={classes.tableHeaders}>
+                                    {t('totalPrice')}
+                                </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders} />
                             </TableRow>
                         </TableHead>
@@ -64,6 +67,9 @@ export default function ListOrders() {
                                     </TableCell>
                                     <TableCell align="center">
                                         {row.date}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        {row.totalPrice}
                                     </TableCell>
                                     <TableCell align="center">
                                         <Button variant="contained" color="secondary" onClick={() => {

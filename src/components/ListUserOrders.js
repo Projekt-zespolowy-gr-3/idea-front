@@ -68,6 +68,22 @@ export default function ListUserOrders() {
                                             {t('details')}
                                         </Button>
                                     </TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="contained" color="secondary" onClick={() => {
+                                            setOrderKey(row.totalPrice);
+                                            setShowDetails(true);
+                                        }}>
+                                            {t('totalPrice')}
+                                        </Button>
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <Button variant="contained" color="secondary" onClick={() => {
+                                            setOrderKey(row.businessKey);
+                                            setShowDetails(true);
+                                        }}>
+                                            {t('details')}
+                                        </Button>
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

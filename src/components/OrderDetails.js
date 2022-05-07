@@ -39,6 +39,7 @@ export default function OrderDetails(props) {
                 <h2>{t('id')}: {order.businessKey}</h2>
                 <h2>{t('user')}: {order.username}</h2>
                 <h2>{t('order.date')}: {order.date}</h2>
+                <h2>{t('totalPrice')}: {order.totalPrice}</h2>
                 <br />
                 <h2>{t('order.furnitures')}:</h2>
                 <Paper className={classes.table}>
@@ -53,6 +54,9 @@ export default function OrderDetails(props) {
                                 </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders}>
                                     {t('category')}
+                                </TableCell>
+                                <TableCell align="center" className={classes.tableHeaders}>
+                                    {t('quantity')}
                                 </TableCell>
                                 <TableCell align="center" className={classes.tableHeaders}>
                                     {t('price')}
@@ -70,6 +74,9 @@ export default function OrderDetails(props) {
                                     </TableCell>
                                     <TableCell align="center">
                                         {t(row.category)}
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        {t(row.quantity)}
                                     </TableCell>
                                     <TableCell align="center">
                                         {row.price}
